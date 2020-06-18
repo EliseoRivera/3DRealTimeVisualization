@@ -6,22 +6,27 @@
 ///***********************************************Cinética y cinemática********************************************///
  void ClaseOpenGL::InicializarRungeKutta()
 {
-    g=9.81; l=2;
-y.zero(2,1);
-f1.zero(2,1);
-f2.zero(2,1);
-f3.zero(2,1);
-f4.zero(2,1);
+ g=9.81; l=2;
+ n=1;  //Grados de libertad
+y.zero(2*n,1);
+f1.zero(2*n,1);
+f2.zero(2*n,1);
+f3.zero(2*n,1);
+f4.zero(2*n,1);
 
-dt=0.05; //definir tamaño de paso
+
+k=20;
+m=0.3;
+dt=0.0166666667; //definir tamaño de paso
 t=0;  //inicializar el tiempo
 ///Definir condiciones iniciales para la posición y para la velocidad
-y.entry(0,0)=PI/4;
+x0=1;
+y.entry(0,0)=x0+0.5;
 y.entry(1,0)=0;
 
 }
  void ClaseOpenGL::IntegrarRungeKutta(){
-   f1=dt*F(y,t);
+            f1=dt*F(y,t);
             f2=dt*F(y+0.5*f1,t+0.5*dt);
             f3=dt*F(y+0.5*f2,t+0.5*dt);
             f4=dt*F(y+f3,t+dt);
@@ -31,33 +36,36 @@ y.entry(1,0)=0;
 
 }
  Matrix ClaseOpenGL::F(const Matrix &y_,float t){
- Matrix f(2,1);
+ Matrix yv(2*n,1);
 
-    f.entry(0,0)=y_.entry(1,0);
-    f.entry(1,0)=-(g/l)*sin(y_.entry(0,0));
-    return f;
+    yv.entry(0,0)=y_.entry(1,0);
+    yv.entry(1,0)=-(k/m)*(y_.entry(0,0)-x0);
+    return yv;
 
 }
 void ClaseOpenGL::preparar(){
 IntegrarRungeKutta();
 //cambiar configuracion
-cuerpo->O.x=l*cos(y.entry(0,0));
-cuerpo->O.y=l*sin(y.entry(0,0));
+//cuerpo->O.x=l*cos(y.entry(0,0));
+//cuerpo->O.y=l*sin(y.entry(0,0));
 //aumentar tiempo
 t=t+dt;
 }
 ///************************************************Renderizado********************************************///
 
+void ClaseOpenGL::DibujarEscena(float t){
+     DibujarEjes();
+     //cuerpo->dibujar();
+     float x=y.entry(0,0);
+     Drawcube3D({x+x0,0,0});
+     draw_Xspring({0,0,0}, {x+x0,0,0});
 
+}
 
 
 ClaseOpenGL::ClaseOpenGL(){
 
-};
-
-void ClaseOpenGL::inicializar(){
-
-Rcamera=10;
+    Rcamera=10;
 phiCamera=PI/2.0;
 thetaCamera=-PI/2;
 camerafactor=0.005;
@@ -71,18 +79,23 @@ camerafactor=0.005;
     glEnable(GL_DEPTH_TEST);					// hidden surface removal
     glShadeModel(GL_SMOOTH);					// use smooth shading
     glEnable(GL_LIGHTING);
-
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
     glEnable(GL_LIGHT2);
     glEnable(GL_COLOR_MATERIAL );
 
-    CargarEscena();
 
+};
+
+void ClaseOpenGL::inicializar(){
+
+
+CargarEscena();
 
 InicializarRungeKutta();
 
 }
+
 void ClaseOpenGL::renderizar(){
 
         // calculate the camera's position
@@ -99,18 +112,12 @@ void ClaseOpenGL::CargarEscena(){
 cuerpo=new modelo3D();
 cuerpo->leer("esfera.stl");
 }
-void ClaseOpenGL::DibujarEscena(float t){
-     DibujarEjes();
-     cuerpo->dibujar();
-     draw_Xspring();
-     draw_Yspring();
-     draw_Zspring();
-}
+
 void ClaseOpenGL::DibujarEjes(){
 
-Drawarrow3D({0,0,0},{100,0,0},rojo,0.03);
+    Drawarrow3D({0,0,0},{100,0,0},rojo,0.03);
      Drawarrow3D({0,0,0},{0,100,0},verde,0.03);
-     Drawarrow3D({0,0,0},{0,0,100},azul,0.03);
+     Drawarrow3D({0,0,0},{0,0,100},azul,0.01);
 }
 
 void ClaseOpenGL::draw_Zspring()
@@ -213,17 +220,17 @@ punto1={rs*sin(k1*(tt+d))+ty,c1*(tt+d)+tz,rs*cos(k1*(tt+d))+tx};
 }
 
 };
-void ClaseOpenGL::draw_Xspring()
+void ClaseOpenGL::draw_Xspring(vector3d A,  vector3d B)
 {
 
     float tx,ty,tz;
-	tx=0;
-	ty=0;
-	tz=0;
+	tx=A.x;
+	ty=A.y;
+	tz=A.z;
 	Radiotube=0.03f;
 	float rs=0.3;
     int k1=10*(2*PI); //ciclos del resorte
-    float c1=0.5*(sin(t)+5); //longitud del resorte
+    float c1=(B-A).x; //longitud del resorte
 
 
 
@@ -245,9 +252,9 @@ vector3d DELTA1;
 
 float dtt=d;
 //crea resorte
-float lenght=1;
+float lenghtparam=1;
 
-while (tt<lenght){
+while (tt<lenghtparam){
 punto2={c1*(tt+2*d)+tz,rs*cos(k1*(tt+2*d))+tx,rs*sin(k1*(tt+2*d))+ty};
 
 n2={c1,-rs*k1*sin(k1*(tt+d)),rs*k1*cos(k1*(tt+d))}; //tau
@@ -392,6 +399,62 @@ void ClaseOpenGL::Resize(int width, int height){
         glMatrixMode(GL_MODELVIEW);				// set modelview matrix
         glLoadIdentity();						// reset modelview matrix
 }
+void ClaseOpenGL::Drawcube3D(vector3d Position,float lado){
+vector3d P[6];
+
+P[0]={lado/2,0,0};
+P[0]=P[0]+Position;
+P[1]={-lado/2,0,0};
+P[1]=P[1]+Position;
+P[2]={0,lado/2,0};
+P[2]=P[2]+Position;
+P[3]={0,-lado/2,0};
+P[3]=P[3]+Position;
+P[4]={0,0,lado/2};
+P[4]=P[4]+Position;
+P[5]={0,0,-lado/2};
+P[5]=P[5]+Position;
+
+
+
+Drawplane1(P[0],{0,1,0},{0,0,1},lado);
+Drawplane1(P[1],{0,-1,0},{0,0,1},lado);
+Drawplane1(P[2],{1,0,0},{0,0,1},lado);
+Drawplane1(P[3],{1,0,0},{0,0,-1},lado);
+Drawplane1(P[4],{1,0,0},{0,1,0},lado);
+Drawplane1(P[5],{1,0,0},{0,-1,0},lado);
+
+	}
+	void ClaseOpenGL::Drawplane1( vector3d Position,  vector3d Udir, vector3d Vdir, float lado,vector3d color){
+
+
+Udir.normalize();
+Vdir=Vdir-(Vdir.dotProduct(Udir)*Udir);
+Vdir.normalize();
+
+vector3d normal((Udir*Vdir));
+normal.normalize();
+vector3d A,B,C,D;
+float alpha=1;
+glColor4f( color.x,color.y, color.z,alpha);
+float t=lado/2.0f;
+
+A=Position+t*Udir-t*Vdir;
+B=Position+t*Udir+t*Vdir;
+C=Position-t*Udir-t*Vdir;
+D=Position-t*Udir+t*Vdir;
+glNormal3f(normal.x, normal.y, normal.z);
+    glBegin( GL_TRIANGLES);
+    glVertex4f(A.x,A.y,A.z,alpha);
+    glVertex4f(B.x,B.y,B.z,alpha);
+    glVertex4f(C.x,C.y,C.z,alpha);
+
+     glVertex4f(C.x,C.y,C.z,alpha);
+    glVertex4f(B.x,B.y,B.z,alpha);
+    glVertex4f(D.x,D.y,D.z,alpha);
+    glEnd();
+
+	};
 void ClaseOpenGL::Drawarrow3D( vector3d A,  vector3d B, vector3d color, double R)
 {
 

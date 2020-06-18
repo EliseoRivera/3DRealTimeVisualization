@@ -59,3 +59,63 @@
 1592519417 source:d:\misoftwarelibre\tutorial0\src\claseopenglgraficador.cpp
 	"ClaseOpenGLGraficador.h"
 
+1592522680 source:d:\github\3drealtimevisualization\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<ClaseOpenGL.h>
+	<ClaseOpenGLGraficador.h>
+	<iostream>
+
+1592521856 d:\github\3drealtimevisualization\include\claseopengl.h
+	<gl/gl.h>
+	<GL/GLU.h>
+	<vector3d.h>
+	<modelo3D.h>
+
+1569010398 d:\github\3drealtimevisualization\include\vector3d.h
+	<math.h>
+
+1569010398 d:\github\3drealtimevisualization\include\modelo3d.h
+	"Triangle3D.h"
+	"Matrix.h"
+	<fstream>
+	<iostream>
+	<gl/gl.h>
+	<GL/GLU.h>
+	<string>
+
+1569010398 d:\github\3drealtimevisualization\include\triangle3d.h
+	"vector3d.h"
+
+1569425968 d:\github\3drealtimevisualization\include\matrix.h
+	"vector3d.h"
+	<iostream>
+
+1592519614 d:\github\3drealtimevisualization\include\claseopenglgraficador.h
+	<gl/gl.h>
+	<GL/GLU.h>
+	<vector3d.h>
+	<modelo3D.h>
+	<vector>
+
+1592522601 source:d:\github\3drealtimevisualization\src\claseopengl.cpp
+	"ClaseOpenGL.h"
+
+1592522216 source:d:\github\3drealtimevisualization\src\claseopenglgraficador.cpp
+	"ClaseOpenGLGraficador.h"
+
+1569425968 source:d:\github\3drealtimevisualization\src\matrix.cpp
+	"Matrix.h"
+
+1592502301 source:d:\github\3drealtimevisualization\src\modelo3d.cpp
+	"modelo3D.h"
+	<gl/gl.h>
+	<stdint.h>
+
+1569010398 source:d:\github\3drealtimevisualization\src\triangle3d.cpp
+	"Triangle3D.h"
+
+1569010398 source:d:\github\3drealtimevisualization\src\vector3d.cpp
+	"vector3d.h"
+	<iostream>
+

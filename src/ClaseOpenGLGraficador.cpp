@@ -62,7 +62,7 @@ dibujarlinea(-100+cameraX,0,100+cameraX,0);
 dibujarlinea(0,100,0,-100,0,1);
 }
 void ClaseOpenGL2D::drawdatos(float t,float rojo, float verde, float azul){
- glPointSize(5);
+ glPointSize(3);
  glColor3f(rojo,verde,azul);
     glBegin(GL_POINTS);
 

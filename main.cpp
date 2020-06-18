@@ -69,8 +69,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 
 
-Miclase = new ClaseOpenGL;  //agregar código opengl
-Miclase2 = new ClaseOpenGL2D;
 
     if (!RegisterClassEx(&wcex))
         return 0;
@@ -113,12 +111,21 @@ UpdateWindow(hwnd);					// update the window
 EnableOpenGL(hwnd2, &hDC2, &hRC2); //va primero esto
 ShowWindow(hwnd2, nCmdShow); // y despues mostrar ventana
 UpdateWindow(hwnd2);
+
+
     /* enable OpenGL for the window */
 wglMakeCurrent( hDC, hRC );
+
+Miclase = new ClaseOpenGL;  //agregar código opengl
 Miclase->inicializar();
 SwapBuffers(hDC);
 
+
+
+
+
 wglMakeCurrent( hDC2, hRC2 );
+Miclase2 = new ClaseOpenGL2D;
 Miclase2->inicializar();
 SwapBuffers(hDC2);
     /* program main loop */
@@ -140,15 +147,17 @@ SwapBuffers(hDC2);
         }
         else
         {
-             wglMakeCurrent( hDC, hRC );
-              Miclase->preparar();
-             Miclase->renderizar();
-             SwapBuffers(hDC);
+
 
             wglMakeCurrent( hDC2, hRC2 );
             Miclase2->preparar(Miclase->t,Miclase->y);
             Miclase2->renderizar();
             SwapBuffers(hDC2);
+
+               wglMakeCurrent( hDC, hRC );
+              Miclase->preparar();
+             Miclase->renderizar();
+             SwapBuffers(hDC);
          //   Sleep (1);
         }
     }

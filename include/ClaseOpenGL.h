@@ -14,11 +14,13 @@ class ClaseOpenGL
 
         ///cinética y cinemática
         float t,dt;
+       unsigned int n;
 
         void InicializarRungeKutta();
+        float x0,y0,z0;
         void IntegrarRungeKutta();
         void preparar();
-         float g, l;
+         float g, l,k,m;
         Matrix y, f1,f2,f3,f4;
          Matrix F(const Matrix &y_,float t);
         ///////////////////parte visual
@@ -33,7 +35,9 @@ class ClaseOpenGL
         void  Drawarrow3D( vector3d A,  vector3d B, vector3d color, double R=0.01);
         void draw_Zspring();
         void draw_Yspring();
-        void draw_Xspring();
+        void draw_Xspring(vector3d A,  vector3d B);
+        void Drawcube3D(vector3d Position={0,0,0},float lado=1);
+        	void Drawplane1( vector3d Position,  vector3d Udir, vector3d Vdir, float lado,vector3d color={0,0.6,1});
         float  cameraX,  cameraZ, cameraY ,   mouseX,mouseY, camerafactor,angle;
         float Rcamera, phiCamera, thetaCamera;
         float radians;

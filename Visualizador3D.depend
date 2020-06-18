@@ -66,7 +66,7 @@
 	<ClaseOpenGLGraficador.h>
 	<iostream>
 
-1592521856 d:\github\3drealtimevisualization\include\claseopengl.h
+1592523068 d:\github\3drealtimevisualization\include\claseopengl.h
 	<gl/gl.h>
 	<GL/GLU.h>
 	<vector3d.h>
@@ -98,10 +98,10 @@
 	<modelo3D.h>
 	<vector>
 
-1592522601 source:d:\github\3drealtimevisualization\src\claseopengl.cpp
+1592522929 source:d:\github\3drealtimevisualization\src\claseopengl.cpp
 	"ClaseOpenGL.h"
 
-1592522216 source:d:\github\3drealtimevisualization\src\claseopenglgraficador.cpp
+1592523674 source:d:\github\3drealtimevisualization\src\claseopenglgraficador.cpp
 	"ClaseOpenGLGraficador.h"
 
 1569425968 source:d:\github\3drealtimevisualization\src\matrix.cpp

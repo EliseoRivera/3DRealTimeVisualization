@@ -37,7 +37,7 @@ class ClaseOpenGL
         void draw_Yspring();
         void draw_Xspring(vector3d A,  vector3d B);
         void Drawcube3D(vector3d Position={0,0,0},float lado=1);
-        	void Drawplane1( vector3d Position,  vector3d Udir, vector3d Vdir, float lado,vector3d color={0,0.6,1});
+        	void Drawplane1( vector3d Position,  vector3d Udir, vector3d Vdir, float lado,vector3d color={0.790625,0.400380228,0.1359375});
         float  cameraX,  cameraZ, cameraY ,   mouseX,mouseY, camerafactor,angle;
         float Rcamera, phiCamera, thetaCamera;
         float radians;

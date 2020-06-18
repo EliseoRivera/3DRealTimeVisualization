@@ -20,11 +20,11 @@ data.push_back(y.entry(0,0));
 
 void ClaseOpenGL2D::inicializar(){
 
-Rcamera=10;
+Rcamera=1;
 phiCamera=PI/2.0;
 thetaCamera=-PI/2;
 camerafactor=0.005;
-controlCameraX=5;
+controlCameraX=2;
 ////
 
     glClearColor(0,0,0,1);
@@ -49,6 +49,7 @@ controlCameraX=5;
 
 void ClaseOpenGL2D::CargarEscena(){
 cameraX=0;
+cameraZ=5;
 }
 
 
@@ -62,13 +63,14 @@ dibujarlinea(-100+cameraX,0,100+cameraX,0);
 dibujarlinea(0,100,0,-100,0,1);
 }
 void ClaseOpenGL2D::drawdatos(float t,float rojo, float verde, float azul){
+ glLineWidth(2);
  glPointSize(3);
  glColor3f(rojo,verde,azul);
     glBegin(GL_POINTS);
 
- for (int i=0;i<data.size();i++){
-    glVertex3f(tiempo[i],data[i],0);
-
+ for (int i=1;i<data.size();i++){
+    glVertex3f(tiempo[i-1],data[i-1],0);
+     //glVertex3f(tiempo[i],data[i],0);
 }
   glEnd();
 }
@@ -86,9 +88,9 @@ void ClaseOpenGL2D::renderizar(){
 
        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
        glLoadIdentity();
-       cameraX=13;
+       cameraX=5;
        float q=t/cameraX;
-	   gluLookAt(controlCameraX+cameraX*int(q), 0.0, 10, controlCameraX+cameraX*int(q), 0.0, 0.0, 0.0, 1.0, 0.0);
+	   gluLookAt(controlCameraX+cameraX*int(q), 0.0,cameraZ, controlCameraX+cameraX*int(q), 0.0, 0.0, 0.0, 1.0, 0.0);
        DibujarEscena(t);
 
 }
@@ -98,7 +100,7 @@ void ClaseOpenGL2D::Resize(int width, int height){
         glMatrixMode(GL_PROJECTION);			// set projection matrix current matrix
         glLoadIdentity();						// reset projection matrix
         // calculate aspect ratio of window
-        gluPerspective(52.0f,(GLdouble)width/(GLdouble)height,1.0f,1000.0f);
+        gluPerspective(52.0f,(GLdouble)width/(GLdouble)height,0.10f,1000.0f);
         glMatrixMode(GL_MODELVIEW);				// set modelview matrix
         glLoadIdentity();
 

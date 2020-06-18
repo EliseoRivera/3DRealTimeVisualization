@@ -63,29 +63,6 @@ void ClaseOpenGL::DibujarEscena(float t){
 }
 
 
-ClaseOpenGL::ClaseOpenGL(){
-
-    Rcamera=10;
-phiCamera=PI/2.0;
-thetaCamera=-PI/2;
-camerafactor=0.005;
-////
-
-    glClearColor(1,1,1,1);
-    glEnable( GL_LINE_SMOOTH );
-    glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_DEPTH_TEST);					// hidden surface removal
-    glShadeModel(GL_SMOOTH);					// use smooth shading
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
-    glEnable(GL_LIGHT2);
-    glEnable(GL_COLOR_MATERIAL );
-
-
-};
 
 void ClaseOpenGL::inicializar(){
 
@@ -389,16 +366,7 @@ vertexinicio[8]=vertexfin[8];
 
 	return t;
 		}
-void ClaseOpenGL::Resize(int width, int height){
 
-        glViewport(0, 0, width, height);		// reset the viewport to new dimensions
-        glMatrixMode(GL_PROJECTION);			// set projection matrix current matrix
-        glLoadIdentity();						// reset projection matrix
-        // calculate aspect ratio of window
-        gluPerspective(52.0f,(GLdouble)width/(GLdouble)height,1.0f,1000.0f);
-        glMatrixMode(GL_MODELVIEW);				// set modelview matrix
-        glLoadIdentity();						// reset modelview matrix
-}
 void ClaseOpenGL::Drawcube3D(vector3d Position,float lado){
 vector3d P[6];
 
@@ -547,7 +515,39 @@ glEnd();
 
 }
 
+ClaseOpenGL::ClaseOpenGL(){
 
+    Rcamera=10;
+phiCamera=PI/2.0;
+thetaCamera=-PI/2;
+camerafactor=0.005;
+////
+
+    glClearColor(1,1,1,1);
+    glEnable( GL_LINE_SMOOTH );
+    glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_DEPTH_TEST);					// hidden surface removal
+    glShadeModel(GL_SMOOTH);					// use smooth shading
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+    glEnable(GL_LIGHT2);
+    glEnable(GL_COLOR_MATERIAL );
+
+
+};
+void ClaseOpenGL::Resize(int width, int height){
+
+        glViewport(0, 0, width, height);		// reset the viewport to new dimensions
+        glMatrixMode(GL_PROJECTION);			// set projection matrix current matrix
+        glLoadIdentity();						// reset projection matrix
+        // calculate aspect ratio of window
+        gluPerspective(52.0f,(GLdouble)width/(GLdouble)height,1.0f,1000.0f);
+        glMatrixMode(GL_MODELVIEW);				// set modelview matrix
+        glLoadIdentity();						// reset modelview matrix
+}
 ClaseOpenGL::~ClaseOpenGL()
 {
     delete cuerpo;

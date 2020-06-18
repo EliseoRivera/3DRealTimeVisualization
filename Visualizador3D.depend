@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1592517248 source:d:\misoftwarelibre\tutorial0\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<ClaseOpenGL.h>
+	<ClaseOpenGLGraficador.h>
+	<iostream>
+
+1592504884 d:\misoftwarelibre\tutorial0\include\claseopengl.h
+	<gl/gl.h>
+	<GL/GLU.h>
+	<vector3d.h>
+	<modelo3D.h>
+
+1569010398 d:\misoftwarelibre\tutorial0\include\vector3d.h
+	<math.h>
+
+1569010398 d:\misoftwarelibre\tutorial0\include\modelo3d.h
+	"Triangle3D.h"
+	"Matrix.h"
+	<fstream>
+	<iostream>
+	<gl/gl.h>
+	<GL/GLU.h>
+	<string>
+
+1569010398 d:\misoftwarelibre\tutorial0\include\triangle3d.h
+	"vector3d.h"
+
+1569425968 d:\misoftwarelibre\tutorial0\include\matrix.h
+	"vector3d.h"
+	<iostream>
+
+1592519614 d:\misoftwarelibre\tutorial0\include\claseopenglgraficador.h
+	<gl/gl.h>
+	<GL/GLU.h>
+	<vector3d.h>
+	<modelo3D.h>
+	<vector>
+
+1592519392 source:d:\misoftwarelibre\tutorial0\src\claseopengl.cpp
+	"ClaseOpenGL.h"
+
+1569425968 source:d:\misoftwarelibre\tutorial0\src\matrix.cpp
+	"Matrix.h"
+
+1592502301 source:d:\misoftwarelibre\tutorial0\src\modelo3d.cpp
+	"modelo3D.h"
+	<gl/gl.h>
+	<stdint.h>
+
+1569010398 source:d:\misoftwarelibre\tutorial0\src\triangle3d.cpp
+	"Triangle3D.h"
+
+1569010398 source:d:\misoftwarelibre\tutorial0\src\vector3d.cpp
+	"vector3d.h"
+	<iostream>
+
+1592519417 source:d:\misoftwarelibre\tutorial0\src\claseopenglgraficador.cpp
+	"ClaseOpenGLGraficador.h"
+

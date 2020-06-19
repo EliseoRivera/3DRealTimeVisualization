@@ -1,6 +1,6 @@
 
 #include "ClaseOpenGL.h"
-///Copyright (C) <2017>  <Eliseo Rivera> curso.tareas@gmail.com
+///Copyright (C) <2017>  <Eliseo Rivera Silva> curso.tareas@gmail.com
 
 
 ///***********************************************Cinética y cinemática********************************************///
@@ -58,7 +58,7 @@ void ClaseOpenGL::DibujarEscena(float t){
      //cuerpo->dibujar();
      float x=y.entry(0,0);
      Drawcube3D({x+x0,0,0});
-     draw_Xspring({0,0,0}, {x+x0,0,0});
+     draw_Xspring({0,0,0}, {x+x0-0.5,0,0});
 
 }
 

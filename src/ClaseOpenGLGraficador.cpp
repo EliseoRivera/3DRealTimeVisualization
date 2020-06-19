@@ -1,6 +1,6 @@
 
 #include "ClaseOpenGLGraficador.h"
-///Copyright (C) <2017>  <Eliseo Rivera> curso.tareas@gmail.com
+///Copyright (C) <2017>  <Eliseo Rivera Silva> curso.tareas@gmail.com
 
 
 
@@ -59,8 +59,8 @@ drawdatos(t_);
 
 }
 void ClaseOpenGL2D::DibujarEjes(){
-dibujarlinea(-100+cameraX,0,100+cameraX,0);
-dibujarlinea(0,100,0,-100,0,1);
+dibujarlinea(-10+t,0,10+t,0);
+dibujarlinea(0,10,0,-10,0,1);
 }
 void ClaseOpenGL2D::drawdatos(float t,float rojo, float verde, float azul){
  glLineWidth(2);

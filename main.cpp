@@ -155,7 +155,7 @@ SwapBuffers(hDC2);
             SwapBuffers(hDC2);
 
                wglMakeCurrent( hDC, hRC );
-              Miclase->preparar();
+             Miclase->preparar();
              Miclase->renderizar();
              SwapBuffers(hDC);
          //   Sleep (1);
@@ -168,7 +168,7 @@ Miclase=NULL;Miclase2=NULL;
     DisableOpenGL(hwnd, hDC, hRC);
     DisableOpenGL(hwnd2, hDC2, hRC2);
     /* destroy the window explicitly */
-    DestroyWindow(hwnd);
+   DestroyWindow(hwnd);
    DestroyWindow(hwnd2);
 
     return msg.wParam;

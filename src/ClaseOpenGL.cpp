@@ -15,13 +15,13 @@ f3.zero(2*n,1);
 f4.zero(2*n,1);
 
 
-k=1000;
-m=0.3;
-dt=0.00566666667; //definir tamaño de paso
+k=100;
+m=1;
+dt=0.01; //definir tamaño de paso
 t=0;  //inicializar el tiempo
 ///Definir condiciones iniciales para la posición y para la velocidad
-x0=1;
-y.entry(0,0)=x0+0.5;
+x0=3;
+y.entry(0,0)=x0;
 y.entry(1,0)=0;
 
 }
@@ -40,7 +40,7 @@ y.entry(1,0)=0;
  Matrix yv(2*n,1);
 
     yv.entry(0,0)=y_.entry(1,0);
-    yv.entry(1,0)=-(k/m)*(y_.entry(0,0)-x0)+0.3*sin(sqrt(k/m)*t);
+    yv.entry(1,0)=-(k/m)*(y_.entry(0,0)-x0)+8*sin(sqrt(k/m)*t)-0.7*y.entry(1,0);
     return yv;
 
 }
@@ -80,9 +80,16 @@ void ClaseOpenGL::renderizar(){
     cameraX=Rcamera*(fabs(cos(phiCamera)))*cos(thetaCamera);
     cameraY=Rcamera*(fabs(cos(phiCamera)))*sin(thetaCamera);
     cameraZ=Rcamera*(sin(phiCamera));
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
-    glLoadIdentity();
-    gluLookAt(cameraX,cameraY  ,cameraZ, 0,2,0, 0,0,1);
+
+
+
+       glMatrixMode(GL_MODELVIEW);
+       glLoadIdentity();
+       glTranslatef(-5, -3,-cameraZ);
+
+
 DibujarEscena();
 /// ////////////////////////////
 }

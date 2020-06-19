@@ -49,7 +49,7 @@ controlCameraX=2;
 
 void ClaseOpenGL2D::CargarEscena(){
 cameraX=0;
-cameraZ=5;
+cameraZ=10;
 }
 
 

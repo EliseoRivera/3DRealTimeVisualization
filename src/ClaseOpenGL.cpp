@@ -15,9 +15,9 @@ f3.zero(2*n,1);
 f4.zero(2*n,1);
 
 
-k=20;
+k=1000;
 m=0.3;
-dt=0.0166666667; //definir tamaño de paso
+dt=0.00566666667; //definir tamaño de paso
 t=0;  //inicializar el tiempo
 ///Definir condiciones iniciales para la posición y para la velocidad
 x0=1;
@@ -35,11 +35,12 @@ y.entry(1,0)=0;
             cout<<"t = "<<t<<" , Theta ="<<y.entry(0,0)*180/PI<<endl;
 
 }
+
  Matrix ClaseOpenGL::F(const Matrix &y_,float t){
  Matrix yv(2*n,1);
 
     yv.entry(0,0)=y_.entry(1,0);
-    yv.entry(1,0)=-(k/m)*(y_.entry(0,0)-x0);
+    yv.entry(1,0)=-(k/m)*(y_.entry(0,0)-x0)+0.3*sin(sqrt(k/m)*t);
     return yv;
 
 }

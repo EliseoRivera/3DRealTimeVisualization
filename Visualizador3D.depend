@@ -59,7 +59,7 @@
 1592519417 source:d:\misoftwarelibre\tutorial0\src\claseopenglgraficador.cpp
 	"ClaseOpenGLGraficador.h"
 
-1592528159 source:d:\github\3drealtimevisualization\main.cpp
+1592591320 source:d:\github\3drealtimevisualization\main.cpp
 	<windows.h>
 	<gl/gl.h>
 	<ClaseOpenGL.h>
@@ -98,7 +98,7 @@
 	<modelo3D.h>
 	<vector>
 
-1592524245 source:d:\github\3drealtimevisualization\src\claseopengl.cpp
+1592591513 source:d:\github\3drealtimevisualization\src\claseopengl.cpp
 	"ClaseOpenGL.h"
 
 1592524253 source:d:\github\3drealtimevisualization\src\claseopenglgraficador.cpp
